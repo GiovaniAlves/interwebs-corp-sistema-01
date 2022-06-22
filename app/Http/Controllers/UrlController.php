@@ -62,23 +62,28 @@ class UrlController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function edit($id)
     {
-        //
+        $url = Url::find($id);
+
+        return Inertia::render('Urls/Edit', ['url' => $url]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param StoreUpdateUrlRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateUrlRequest $request, $id)
     {
-        //
+        $url = Url::find($id);
+        $url->update($request->validated());
+
+        return Redirect::route('url.index');
     }
 
     /**

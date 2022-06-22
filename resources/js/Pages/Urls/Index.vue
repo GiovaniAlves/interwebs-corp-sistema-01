@@ -14,7 +14,7 @@
                         <InertiaLink
                             class="btn btn-secondary inline-flex"
                             :href="route('url.create')">
-                            Criar Url
+                            Cadastrar Url
                         </InertiaLink>
 
                         <table class="table-auto w-full">

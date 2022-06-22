@@ -1,8 +1,8 @@
 <template>
-    <AppLayout title="CreateUrl">
+    <AppLayout title="EditUrl">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Cadastro URL
+                Editar URL
             </h2>
         </template>
 
@@ -23,7 +23,7 @@
                             <div class="mt-4">
                                 <jet-label value="Nome" />
                                 <jet-input type="text" placeholder="Ex: https://brasilapi.com.br/api/cep/v1/39800019"
-                                           class="mt-1 block w-full" v-model="form.name" />
+                                           class="mt-1 block w-full" v-model="url.name" />
                             </div>
 
                             <jet-button type="submit" class="ma-4 mt-3">Salvar</jet-button>
@@ -42,18 +42,18 @@ import JetInput from "@/Jetstream/Input.vue"
 import JetLabel from "@/Jetstream/Label.vue"
 import JetButton from "@/Jetstream/Button.vue"
 import InputError from "../../Jetstream/InputError"
-import {Inertia} from "@inertiajs/inertia";
+import {Inertia} from "@inertiajs/inertia"
 
-defineProps({
+const props = defineProps({
+    url: Object,
     errors: Object
 })
 
-const form = {
-    name: ''
-}
-
 function submit() {
-    Inertia.post(route('url.store'), form)
+    Inertia.post(route('url.update', {'id': props.url.id}), {
+        _method: 'put',
+        name: props.url.name
+    })
 }
 
 </script>
