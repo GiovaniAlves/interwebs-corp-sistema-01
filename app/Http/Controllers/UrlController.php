@@ -18,7 +18,7 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $urls = Url::all();
+        $urls = Url::where('user_id', Auth::user()->id)->get();
 
         return Inertia::render('Urls/Index', ['urls' => $urls]);
     }
