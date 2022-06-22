@@ -18,7 +18,9 @@ class UrlController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Urls/Index');
+        $urls = Url::all();
+
+        return Inertia::render('Urls/Index', ['urls' => $urls]);
     }
 
     /**
