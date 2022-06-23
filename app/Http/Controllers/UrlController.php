@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUpdateUrlRequest;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -18,7 +19,7 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $urls = Url::where('user_id', Auth::user()->id)->get();
+        $urls = Url::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->select('id', 'name')->get();
 
         return Inertia::render('Urls/Index', ['urls' => $urls]);
     }
@@ -40,10 +41,17 @@ class UrlController extends Controller
      */
     public function store(StoreUpdateUrlRequest $request)
     {
-        Url::create([
+        $url = Url::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name
         ]);
+
+        // Sending the url data for system 02
+        Http::post('http://localhost:8888/api/setUrl', [
+           'url_id' => $url->id,
+           'url_name' => $url->name
+        ]);
+
         return Redirect::route('url.index');
     }
 
@@ -51,11 +59,13 @@ class UrlController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show($id)
     {
-        //
+        $url = Url::find($id);
+
+        return Inertia::render('Urls/Details', ['url' => $url]);
     }
 
     /**
@@ -83,6 +93,12 @@ class UrlController extends Controller
         $url = Url::find($id);
         $url->update($request->validated());
 
+        // Sending the url data for system 02
+        Http::post('http://localhost:8888/api/setUrl', [
+            'url_id' => $url->id,
+            'url_name' => $url->name
+        ]);
+
         return Redirect::route('url.index');
     }
 
@@ -96,6 +112,11 @@ class UrlController extends Controller
     {
         $url = Url::find($id);
         $url->delete();
+
+        $urlComplete = 'http://localhost:8888/api/delete-answer/' . $id;
+
+        // deleting urlAnswer
+        Http::post($urlComplete);
 
         return Redirect::back();
     }

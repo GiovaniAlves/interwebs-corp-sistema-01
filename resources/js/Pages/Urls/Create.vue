@@ -21,7 +21,7 @@
 
                         <form @submit.prevent="submit">
                             <div class="mt-4">
-                                <jet-label value="Nome" />
+                                <jet-label value="Nome da Url" />
                                 <jet-input type="text" placeholder="Ex: https://brasilapi.com.br/api/cep/v1/39800019"
                                            class="mt-1 block w-full" v-model="form.name" />
                             </div>
