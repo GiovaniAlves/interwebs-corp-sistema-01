@@ -47,7 +47,7 @@ class UrlController extends Controller
         ]);
 
         // Sending the url data for system 02
-        Http::post('http://localhost:8888/api/setUrl', [
+        Http::post(env('URL_SYSTEM_02') . '/setUrl', [
            'url_id' => $url->id,
            'url_name' => $url->name
         ]);
@@ -94,7 +94,7 @@ class UrlController extends Controller
         $url->update($request->validated());
 
         // Sending the url data for system 02
-        Http::post('http://localhost:8888/api/setUrl', [
+        Http::post(env('URL_SYSTEM_02') . '/setUrl', [
             'url_id' => $url->id,
             'url_name' => $url->name
         ]);
@@ -113,7 +113,7 @@ class UrlController extends Controller
         $url = Url::find($id);
         $url->delete();
 
-        $urlComplete = 'http://localhost:8888/api/delete-answer/' . $id;
+        $urlComplete = env('URL_SYSTEM_02') . '/delete-answer/' . $id;
 
         // deleting urlAnswer
         Http::post($urlComplete);

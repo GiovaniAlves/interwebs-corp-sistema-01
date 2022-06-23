@@ -98,20 +98,20 @@ import {onBeforeMount, onBeforeUnmount, ref} from 'vue'
 import axios from "axios"
 
 const props = defineProps({
-    urls: Array
+    urls: Array,
+    urlSystem02: String
 })
 
 let timer = ref({})
 
 onBeforeMount(() => {
-    fetchUrlAnswers()
-    timer = setInterval(fetchUrlAnswers, 10000)
+    timer = setInterval(fetchUrlAnswers, 5000)
 })
 
 // Re-create the whole url data to avoid unintentional reference change
 const model = ref(Object.assign({}, props.urls))
 function fetchUrlAnswers() {
-    axios.get('http://localhost:8888/api/url-answers-list').then((res) => {
+    axios.get(`${props.urlSystem02}/url-answers-list`).then((res) => {
         model.value = res.data.urlAnswers
     })
 }

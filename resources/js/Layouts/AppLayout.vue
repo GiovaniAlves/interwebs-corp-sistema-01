@@ -42,15 +42,15 @@ const logout = () => {
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('url.index')">
                                     <JetApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div class="hidden font-bold space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <JetNavLink :href="route('url.index')" :active="route().current('url.index')">
-                                    Dashboard
+                                    Url(s)
                                 </JetNavLink>
                             </div>
                         </div>
@@ -199,8 +199,8 @@ const logout = () => {
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <JetResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                        <JetResponsiveNavLink :href="route('url.index')" :active="route().current('url.index')">
+                            Url(s)
                         </JetResponsiveNavLink>
                     </div>
 
@@ -222,18 +222,11 @@ const logout = () => {
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <JetResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
-                                Profile
-                            </JetResponsiveNavLink>
-
-                            <JetResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
-                                API Tokens
-                            </JetResponsiveNavLink>
 
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">
                                 <JetResponsiveNavLink as="button">
-                                    Log Out
+                                    Sair
                                 </JetResponsiveNavLink>
                             </form>
 

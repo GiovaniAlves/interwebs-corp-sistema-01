@@ -47,13 +47,14 @@ import {onMounted, ref} from "vue"
 import axios from "axios"
 
 const props = defineProps({
-    url: Object
+    url: Object,
+    urlSystem02: String
 })
 
 // Re-create the whole url data to avoid unintentional reference change
 const model = ref(Object.assign({}, props.url))
 onMounted(() => {
-    axios.get(`http://localhost:8888/api/url-answer/${model.value.id}`).then((response) => {
+    axios.get(`${props.urlSystem02}/url-answer/${model.value.id}`).then((response) => {
         model.value = response.data.urlAnswer
     })
 })
