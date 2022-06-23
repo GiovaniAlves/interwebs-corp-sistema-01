@@ -30,9 +30,9 @@ DB_DATABASE=nome_que_desejar_db
 DB_USERNAME=root
 DB_PASSWORD=root
 
-URL_SYSTEM_02=url_da_segunda_aplicação
+URL_SYSTEM_02=http://url/da/segunda/aplicação
 
-VUE_APP_SYSTEM_02_URL=url_da_segunda_aplicação
+VUE_APP_SYSTEM_02_URL=http://url/da/segunda/aplicação
 ```
 
 #### Instalar as dependências do projeto
@@ -43,6 +43,11 @@ composer install
 #### Gerar a key do projeto Laravel
 ```
 php artisan key:generate
+```
+
+#### Executar as migrações
+```
+php artisan migrate
 ```
 
 #### Subir o servidor
