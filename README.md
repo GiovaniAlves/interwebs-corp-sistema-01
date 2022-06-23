@@ -1,5 +1,9 @@
 ## <p align="center"> <i>Interwebs Corp - Sistema 01</i> </p>
 
+<div align="center">
+  <img width="800" src="https://raw.githubusercontent.com/GiovaniAlves/interwebs-corp-sistema-01/master/public/img/animacao.gif" class="d-block w-100" alt="...">
+</div>
+
 ### Passo a passo
 #### Clone o Repositório
 ```
