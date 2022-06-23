@@ -48,7 +48,7 @@ php artisan serve
 
 #### Compilar para desenvolvimento
 ```
-npm run serve
+npm run dev
 ```
 
 #### Acesse o projeto em http://localhost:8000
